@@ -4,15 +4,23 @@
   its Activity while a position stream without a foreground notification is active. On an engine
   that outlives the Activity, every later `listen` and `cancel` failed with a
   `MissingPluginException` until the process was restarted.
+- Rollsback the declaration of the `FOREGROUND_SERVICE_LOCATION` in the 
+  plugin's own manifest. Adding the permission by default results in automatic
+  rejections by Google when publishing an application that doesn't need nor 
+  support accessing the location services in the background.
 
 ## 5.1.1
 
-- Declares `FOREGROUND_SERVICE_LOCATION` in the plugin's own manifest so it is merged into
-  the host app automatically, instead of requiring app developers to add it by hand.
+- Declares `FOREGROUND_SERVICE_LOCATION` in the plugin's own manifest so it is
+  merged intothe host app automatically, instead of requiring app developers to
+  add it by hand.
 
 ## 5.1.0
 
-- Forwards optional `verticalSpeed` (m/s) and `verticalSpeedAccuracy` (m/s) from location extras when a location provider supplies them. This package does not calculate vertical speed or guarantee that the extras are present or GNSS Doppler-derived.
+- Forwards optional `verticalSpeed` (m/s) and `verticalSpeedAccuracy` (m/s) from 
+  location extras when a location provider supplies them. This package does not 
+  calculate vertical speed or guarantee that the extras are present or GNSS 
+  Doppler-derived.
 - Forwards `hasVerticalSpeed`, `hasVerticalSpeedAccuracy`, and presence flags in `AndroidPosition`.
 - Adds unit tests for float/double extras parsing and presence flags preservation.
 
